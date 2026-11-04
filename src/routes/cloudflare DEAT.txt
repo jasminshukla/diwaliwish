@@ -2,3 +2,5 @@ Secret key
 0x4AAAAAAFzKD8TrQIekiJmHPsx9lMiJgDw
 Site key
 0x4AAAAAAFzKDxU5Y70jKr98
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "50a2735cd5154625b9e8f31d2f8a14a1"}'></script><!-- End Cloudflare Web Analytics -->

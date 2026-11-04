@@ -37,3 +37,4 @@ scripts/.fonts
 *.njsproj
 *.sln
 *.sw?
+src/routes/cloudflare DEAT.txt

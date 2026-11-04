@@ -8,8 +8,6 @@ interface __BaseEnv_Env {
 	GA_MEASUREMENT_ID: "";
 	TURNSTILE_SITE_KEY: "";
 	CF_BEACON_TOKEN: "";
-	CF_ACCESS_TEAM_DOMAIN: "";
-	CF_ACCESS_AUD: "";
 	GA4_PROPERTY_ID: "";
 	GA4_CLIENT_EMAIL: "";
 	SITE_CONTACT_EMAIL: "";
@@ -25,7 +23,7 @@ type StringifyValues<EnvType extends Record<string, unknown>> = {
 	[Binding in keyof EnvType]: EnvType[Binding] extends string ? EnvType[Binding] : string;
 };
 declare namespace NodeJS {
-	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "ENVIRONMENT" | "DATA_RETENTION_DAYS" | "GA_MEASUREMENT_ID" | "TURNSTILE_SITE_KEY" | "CF_BEACON_TOKEN" | "CF_ACCESS_TEAM_DOMAIN" | "CF_ACCESS_AUD" | "GA4_PROPERTY_ID" | "GA4_CLIENT_EMAIL" | "SITE_CONTACT_EMAIL">> {}
+	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "ENVIRONMENT" | "DATA_RETENTION_DAYS" | "GA_MEASUREMENT_ID" | "TURNSTILE_SITE_KEY" | "CF_BEACON_TOKEN" | "GA4_PROPERTY_ID" | "GA4_CLIENT_EMAIL" | "SITE_CONTACT_EMAIL">> {}
 }
 declare module "*.txt" {
 	const value: string;

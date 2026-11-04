@@ -20,10 +20,6 @@ RATE_LIMIT_SALT=local-dev-rate-limit-salt-change-me
 # GA4_CLIENT_EMAIL=
 # GA4_PRIVATE_KEY=
 
-# Optional Cloudflare Access. Leave blank to use ADMIN_API_TOKEN locally.
-# CF_ACCESS_TEAM_DOMAIN=your-team.cloudflareaccess.com
-# CF_ACCESS_AUD=
-
 # Optional address shown on the privacy page for deletion requests.
 # SITE_CONTACT_EMAIL=
 GA_MEASUREMENT_ID=

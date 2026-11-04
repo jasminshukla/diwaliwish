@@ -15,10 +15,9 @@ The code is ready. These steps need your Cloudflare and Google accounts. None of
 7. Create a GA4 web stream for `https://bestwishes.jasminshukla.com` and copy the measurement ID (`G-…`) into `GA_MEASUREMENT_ID` in `wrangler.jsonc`.
 8. Optional, for visitor totals on `/admin`: in Google Analytics, create a service account with the Viewer role on the property. Then set `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, and `npx wrangler secret put GA4_PRIVATE_KEY` (paste the PEM, with newlines as `\n`).
 9. Create a long random admin token and set it: `npx wrangler secret put ADMIN_API_TOKEN`. Also set `npx wrangler secret put RATE_LIMIT_SALT`.
-10. Optional and recommended: in Cloudflare Zero Trust, create an Access application for `bestwishes.jasminshukla.com/admin` and `bestwishes.jasminshukla.com/api/admin`. Set `CF_ACCESS_TEAM_DOMAIN` and `CF_ACCESS_AUD` in `wrangler.jsonc`.
-11. Optional: add `bestwishes.jasminshukla.com` in Cloudflare Web Analytics and put its beacon token in `CF_BEACON_TOKEN`.
-12. Deploy: `npm run deploy`.
-13. Deploy attaches `bestwishes.jasminshukla.com`. The zone `jasminshukla.com` must already be on the same Cloudflare account. Confirm it under Workers & Pages → happy-diwali-2026 → Settings → Domains & Routes.
+10. Optional: add `bestwishes.jasminshukla.com` in Cloudflare Web Analytics and put its beacon token in `CF_BEACON_TOKEN`.
+11. Deploy: `npm run deploy`.
+12. Deploy attaches `bestwishes.jasminshukla.com`. The zone `jasminshukla.com` must already be on the same Cloudflare account. Confirm it under Workers & Pages → happy-diwali-2026 → Settings → Domains & Routes.
 
 Until step 6 is done, production refuses to save new greetings. Local development can use Cloudflare’s always-pass dummy keys from `.dev.vars.example`.
 
@@ -94,7 +93,7 @@ Set these with `npx wrangler secret put`, not in git:
 - `RATE_LIMIT_SALT`
 - `GA4_PRIVATE_KEY` (only if you want visitor totals inside `/admin`)
 
-Public values live in `wrangler.jsonc` `vars` or `.dev.vars`: `GA_MEASUREMENT_ID`, `TURNSTILE_SITE_KEY`, `CF_BEACON_TOKEN`, `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `CF_ACCESS_TEAM_DOMAIN`, `CF_ACCESS_AUD`, `SITE_CONTACT_EMAIL`, `DATA_RETENTION_DAYS`.
+Public values live in `wrangler.jsonc` `vars` or `.dev.vars`: `GA_MEASUREMENT_ID`, `TURNSTILE_SITE_KEY`, `CF_BEACON_TOKEN`, `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `SITE_CONTACT_EMAIL`, `DATA_RETENTION_DAYS`.
 
 `VITE_GA_MEASUREMENT_ID` and `VITE_TURNSTILE_SITE_KEY` are build-time fallbacks. A value set in Wrangler is used at runtime and does not require another build.
 
