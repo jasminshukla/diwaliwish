@@ -24,6 +24,9 @@ dist-ssr
 .dev.vars
 !.dev.vars.example
 
+# Downloaded only while rendering brand images
+scripts/.fonts
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -11,14 +11,14 @@ The code is ready. These steps need your Cloudflare and Google accounts. None of
 3. Create the database: `npx wrangler d1 create diwali_wishes_db`.
 4. Copy the printed `database_id` into `wrangler.jsonc` (replace the all-zero id).
 5. Apply the schema: `npm run db:migrate:remote`.
-6. Create a [Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile) widget named `happy-diwali-2026` in managed mode. Add your domain, plus `localhost` for local testing. Put the site key in `TURNSTILE_SITE_KEY` and the secret with `npx wrangler secret put TURNSTILE_SECRET_KEY`.
-7. Create a GA4 web stream and copy the measurement ID (`G-…`) into `GA_MEASUREMENT_ID` in `wrangler.jsonc`.
+6. Create a [Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile) widget named `happy-diwali-2026` in managed mode. Add `bestwishes.jasminshukla.com`, plus `localhost` for local testing. Put the site key in `TURNSTILE_SITE_KEY` and the secret with `npx wrangler secret put TURNSTILE_SECRET_KEY`.
+7. Create a GA4 web stream for `https://bestwishes.jasminshukla.com` and copy the measurement ID (`G-…`) into `GA_MEASUREMENT_ID` in `wrangler.jsonc`.
 8. Optional, for visitor totals on `/admin`: in Google Analytics, create a service account with the Viewer role on the property. Then set `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, and `npx wrangler secret put GA4_PRIVATE_KEY` (paste the PEM, with newlines as `\n`).
 9. Create a long random admin token and set it: `npx wrangler secret put ADMIN_API_TOKEN`. Also set `npx wrangler secret put RATE_LIMIT_SALT`.
-10. Optional and recommended: in Cloudflare Zero Trust, create an Access application for `yourdomain.com/admin` and `yourdomain.com/api/admin`. Set `CF_ACCESS_TEAM_DOMAIN` and `CF_ACCESS_AUD` in `wrangler.jsonc`.
-11. Optional: add a Cloudflare Web Analytics site and put its beacon token in `CF_BEACON_TOKEN`.
+10. Optional and recommended: in Cloudflare Zero Trust, create an Access application for `bestwishes.jasminshukla.com/admin` and `bestwishes.jasminshukla.com/api/admin`. Set `CF_ACCESS_TEAM_DOMAIN` and `CF_ACCESS_AUD` in `wrangler.jsonc`.
+11. Optional: add `bestwishes.jasminshukla.com` in Cloudflare Web Analytics and put its beacon token in `CF_BEACON_TOKEN`.
 12. Deploy: `npm run deploy`.
-13. In the Cloudflare dashboard, attach your domain to the Worker (Workers & Pages → happy-diwali-2026 → Settings → Domains & Routes).
+13. Deploy attaches `bestwishes.jasminshukla.com`. The zone `jasminshukla.com` must already be on the same Cloudflare account. Confirm it under Workers & Pages → happy-diwali-2026 → Settings → Domains & Routes.
 
 Until step 6 is done, production refuses to save new greetings. Local development can use Cloudflare’s always-pass dummy keys from `.dev.vars.example`.
 
@@ -68,7 +68,7 @@ One Worker serves the TanStack Start app and the API. Static assets are uploaded
 | `/w/:id` | Personalized greeting |
 | `/admin` | Private statistics |
 
-Share links look like `https://yourdomain.com/w/abc123xy`. Opening one loads that sender, language, and design. It does not show the homepage’s default sender. The homepage itself still opens as Jasmin Shukla until a visitor enters their own name.
+The public site is [https://bestwishes.jasminshukla.com/](https://bestwishes.jasminshukla.com/). Share links look like `https://bestwishes.jasminshukla.com/w/abc123xy`. Opening one loads that sender, language, and design. It does not show the homepage’s default sender. The homepage itself still opens as Jasmin Shukla until a visitor enters their own name.
 
 `royal-gold` is accepted and stored as the existing Royal Gold design (`royal`).
 

@@ -6,17 +6,15 @@ import { useTurnstile } from "@/components/TurnstileField";
 import { track } from "@/lib/analytics";
 import { SUGGESTIONS, TEMPLATES, canvasToBlob, drawCard, loadCardFonts, type CardData } from "@/lib/card";
 import { createWishRequest, recordEvent } from "@/lib/wish-client";
+import { shareMeta } from "@/lib/share-meta";
 
 export const Route = createFileRoute("/create")({
   head: () => ({
-    meta: [
-      { title: "Create Your Own Diwali Wish | Happy Diwali 2026" },
-      { name: "description", content: "Design a personal Diwali 2026 greeting card in Gujarati, Hindi or English, then download or share it on WhatsApp." },
-      { property: "og:title", content: "Create Your Own Diwali Wish" },
-      { property: "og:description", content: "Pick a design, add names and a message, and share your Diwali card." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    meta: shareMeta({
+      title: "Create Your Own Diwali Wish | Happy Diwali 2026",
+      description: "Design a personal Diwali 2026 greeting card in Gujarati, Hindi or English, then download or share it on WhatsApp.",
+      path: "/create",
+    }),
   }),
   component: CreatePage,
 });

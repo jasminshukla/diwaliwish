@@ -5,6 +5,7 @@ import { CardCanvas } from "@/components/CardCanvas";
 import { Diya, Mandala } from "@/components/Diya";
 import { Fireworks, type FireworksHandle } from "@/components/Fireworks";
 import { TEMPLATES } from "@/lib/card";
+import { shareMeta } from "@/lib/share-meta";
 
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.slice(0, max) : "");
 
@@ -16,14 +17,11 @@ export const Route = createFileRoute("/wish")({
     t: str(s["t"], 20),
   }),
   head: () => ({
-    meta: [
-      { title: "A Diwali Wish For You 🪔" },
-      { name: "description", content: "You received a Diwali 2026 greeting card. Open it to see your wish." },
-      { property: "og:title", content: "A Diwali Wish For You 🪔" },
-      { property: "og:description", content: "Open your personal Diwali 2026 greeting card." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    meta: shareMeta({
+      title: "A Diwali Wish For You",
+      description: "Open your personal Diwali 2026 greeting card.",
+      path: "/wish",
+    }),
   }),
   component: WishPage,
 });

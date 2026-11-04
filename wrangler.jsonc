@@ -34,5 +34,11 @@
   ],
   "triggers": {
     "crons": ["15 3 * * *"]
-  }
+  },
+  "routes": [
+    {
+      "pattern": "bestwishes.jasminshukla.com",
+      "custom_domain": true
+    }
+  ]
 }

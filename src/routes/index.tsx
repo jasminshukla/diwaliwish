@@ -9,6 +9,7 @@ import toranImg from "@/assets/marigold-toran.png";
 import { useTurnstile } from "@/components/TurnstileField";
 import { track } from "@/lib/analytics";
 import { createWishRequest, recordEvent } from "@/lib/wish-client";
+import { shareMeta } from "@/lib/share-meta";
 
 export const Route = createFileRoute("/")({
   validateSearch: (s: Record<string, unknown>): { from?: string } => {
@@ -17,14 +18,10 @@ export const Route = createFileRoute("/")({
     return out;
   },
   head: () => ({
-    meta: [
-      { title: "Happy Diwali 2026 | Create & Share Wishes" },
-      { name: "description", content: "A glowing Diwali 2026 greeting. Light a diya, celebrate with fireworks, and send personal wishes." },
-      { property: "og:title", content: "Happy Diwali 2026 | Create & Share Wishes" },
-      { property: "og:description", content: "Light a diya and share personal Diwali wishes." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    meta: shareMeta({
+      title: "Happy Diwali 2026 | Create & Share Wishes",
+      description: "A glowing Diwali 2026 greeting. Light a diya, celebrate with fireworks, and send personal wishes.",
+    }),
   }),
   component: Index,
 });

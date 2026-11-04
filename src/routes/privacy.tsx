@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { loadPublicConfig } from "@/lib/wish-client";
+import { shareMeta } from "@/lib/share-meta";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
-    meta: [
-      { title: "Privacy | Happy Diwali 2026" },
-      { name: "description", content: "What the Happy Diwali 2026 greeting site stores, and how long it is kept." },
-    ],
+    meta: shareMeta({
+      title: "Privacy | Happy Diwali 2026",
+      description: "What the Happy Diwali 2026 greeting site stores, and how long it is kept.",
+      path: "/privacy",
+    }),
   }),
   component: PrivacyPage,
 });

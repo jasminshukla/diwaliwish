@@ -9,6 +9,7 @@ import { T, type Lang } from "@/lib/i18n";
 import type { PublicWish } from "@/lib/public-wish";
 import { isPublicId } from "@/lib/wish-rules";
 import { recordEvent } from "@/lib/wish-client";
+import { shareMeta } from "@/lib/share-meta";
 
 const loadWish = createServerFn({ method: "GET" })
   .validator((id: string) => id)
@@ -24,15 +25,12 @@ export const Route = createFileRoute("/w/$id")({
     if (!wish) throw notFound();
     return wish;
   },
-  head: ({ loaderData }) => ({
-    meta: [
-      { title: loaderData ? `Happy Diwali 2026 — a wish from ${loaderData.senderName}` : "Happy Diwali 2026" },
-      { name: "description", content: "Open a personal Diwali 2026 greeting." },
-      { property: "og:title", content: loaderData ? `A Diwali wish from ${loaderData.senderName}` : "Happy Diwali 2026" },
-      { property: "og:description", content: "A personal Diwali 2026 greeting is waiting." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+  head: ({ loaderData, params }) => ({
+    meta: shareMeta({
+      title: loaderData ? `A Diwali wish from ${loaderData.senderName}` : "Happy Diwali 2026",
+      description: "A personal Diwali 2026 greeting is waiting.",
+      path: `/w/${params.id}`,
+    }),
   }),
   notFoundComponent: WishMissing,
   component: WishLinkPage,

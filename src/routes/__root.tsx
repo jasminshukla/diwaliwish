@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { SiteAnalytics } from "../components/SiteAnalytics";
 import { PrivacyCorner } from "../components/PrivacyCorner";
+import { shareMeta } from "../lib/share-meta";
 
 function NotFoundComponent() {
   return (
@@ -79,19 +80,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Happy Diwali 2026 | Create & Share Wishes" },
-      { name: "description", content: "Create a personal Diwali 2026 greeting in Gujarati, Hindi, or English, then share it with a short link." },
-      { property: "og:title", content: "Happy Diwali 2026 | Create & Share Wishes" },
-      { property: "og:description", content: "Create and share a personal Diwali 2026 greeting." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#080F24" },
+      ...shareMeta({
+        title: "Happy Diwali 2026 | Create & Share Wishes",
+        description: "Create a personal Diwali 2026 greeting in Gujarati, Hindi, or English, then share it with a short link.",
+      }),
     ],
     links: [
+      { rel: "canonical", href: "https://bestwishes.jasminshukla.com/" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Yatra+One&family=Noto+Serif+Gujarati:wght@600;700&family=Hind+Vadodara:wght@400;600&family=Hind:wght@400;600&display=swap" },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
   }),
   shellComponent: RootShell,
