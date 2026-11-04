@@ -1,0 +1,30 @@
+# Local Worker secrets and overrides. Copy to .dev.vars. Never commit .dev.vars.
+# .dev.vars overrides wrangler.jsonc vars for `vite dev` and `wrangler dev`.
+
+ENVIRONMENT=development
+DATA_RETENTION_DAYS=365
+
+# Cloudflare's published Turnstile dummy secret. It always passes.
+# Replace both keys before production. See README.
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+TURNSTILE_SITE_KEY=1x00000000000000000000AA
+
+# At least 16 characters. The /admin page asks for this when Cloudflare Access is not in front.
+ADMIN_API_TOKEN=local-dev-admin-token-change-me
+
+# Salt used to hash network hints for rate limits. The raw address is not stored.
+RATE_LIMIT_SALT=local-dev-rate-limit-salt-change-me
+
+# Optional. Visitor totals on /admin stay blank until all three GA4 values are set.
+# GA4_PROPERTY_ID=
+# GA4_CLIENT_EMAIL=
+# GA4_PRIVATE_KEY=
+
+# Optional Cloudflare Access. Leave blank to use ADMIN_API_TOKEN locally.
+# CF_ACCESS_TEAM_DOMAIN=your-team.cloudflareaccess.com
+# CF_ACCESS_AUD=
+
+# Optional address shown on the privacy page for deletion requests.
+# SITE_CONTACT_EMAIL=
+GA_MEASUREMENT_ID=
+CF_BEACON_TOKEN=
